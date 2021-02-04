@@ -55,7 +55,6 @@ server.post("/user", (req, res) => {
 			email,
 			password
 		}
-		console.log(users);
 		res.send({"msg": `The user ${id}`, id});
 	}
 	else {
@@ -70,8 +69,7 @@ server.delete("/user/:id", (req, res) => {
 	// ! ASí NOOOO!!!
 	let {[id]: deletedUser, ...allUsers} = users;
 	users = allUsers;
-	console.log(users);
-	res.send({msg: `User ${id} deleted`});
+	res.send({"msg": `User ${id} deleted`});
 });
 
 // ? Modify User
@@ -88,12 +86,29 @@ server.put("/user/:id", (req, res) => {
 				email,
 				password
 			}
-			console.log(users);
-			res.send({msg: "User modified"});
+			res.send({"msg": "User modified"});
 		}
 	}
 	else {
 		res.send({"error": "Invalid userId"});
+	}
+});
+
+server.patch("/user/:id", (req, res) => {
+	const {id} = req.params;
+	const {name, surname, birthday, email, password} = req.body;
+	if (typeValidator.isString(name) && typeValidator.isString(surname) && typeValidator.isNumber(birthday) && typeValidator.isString(email) && typeValidator.isString(password)) {
+		users[id] = {
+			name,
+			surname,
+			birthday,
+			email,
+			password
+		}
+		res.send({"msg": `The user ${id}`, id});
+	}
+	else {
+		res.send({"error": "One of the parameters is invalid"});
 	}
 });
 
