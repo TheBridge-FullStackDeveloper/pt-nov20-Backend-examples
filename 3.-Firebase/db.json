@@ -1,0 +1,8 @@
+{
+  "users" : {
+    "pepe" : {
+      "email" : "pepe@pepon.com",
+      "name" : "Pepe"
+    }
+  }
+}
