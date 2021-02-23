@@ -1,3 +1,9 @@
+/*
+    Autenticación: El acto de verificar que un usuario es dicho usuario
+    Autorización: El acto de verificar que un usuario tiene permiso para acceder a un recurso
+*/
+
+
 const express = require("express");
 const base64 = require("base-64");
 const crypto = require("crypto");
